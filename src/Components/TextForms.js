@@ -8,19 +8,23 @@ export default function TextForms(props) {
     const handleUpClick = () => {
         let newText = text.toUpperCase();
         setText(newText);
+        props.showAlert("Convered to Upper Case", "success");
     }
     const handleLoClick = () => {
         let newText = text.toLowerCase();
         setText(newText);
+        props.showAlert("Convered to Lower Case", "success");
     }
     const handleClearClick = () => {
         let newText = '';
         setText(newText);
+        props.showAlert("Text Cleared", "success");
     }
     const handleCopy = () => {
         let newText = document.getElementById('myBox');
         newText.select();
         navigator.clipboard.writeText(newText.value);
+        props.showAlert("Copied to clipboard", "success");
     }
     const handleOnChange = (event) => {
         setText(event.target.value);
@@ -40,6 +44,7 @@ export default function TextForms(props) {
                 <button className="btn btn-primary mx-1" onClick={handleCopy}>Copy Text</button>
             </div>
             <div className="container my-3" style={{color: props.mode==='dark'?'white':'black'}}>
+            <h1>Your Text Summary</h1>
                 <p>{text.trim().split(/\s+/).length} words and {text.length} characters</p>
                 <p>{0.008 * text.split(/\s+/).length} minutes read</p>
             </div>
